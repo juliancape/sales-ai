@@ -95,18 +95,17 @@ sales-ai/
     cp .env.example .env
     ```
 3.  Agrega tu API Key en `.env`: `OPENAI_API_KEY=sk-...`
+4.  **(Opcional)** Logfire para observabilidad:
+    Está deshabilitado por defecto para no hacer tan compleja la instalacion del proyecto. Para acceder a los logs y métricas:
+    1.  Acepta la invitación enviada previamente por correo electrónico.
+    2.  Ingresa a [Logfire - Logs](https://logfire-us.pydantic.dev/juliancape/sales-ai?last=%227d%22) para ver la actividad de los últimos 7 días.
+    3.  Ingresa a [Logfire - Dashboard de Costos](https://logfire-us.pydantic.dev/juliancape/sales-ai/dashboards/standard/token-usage-records?start=7d&refresh=0s&var-resolution=3+hours) para ver el consumo de tokens.
 
-### Docker (Recomendado)
+### Docker
 ```bash
 docker compose up --build
 ```
 El servicio estará disponible en `http://localhost:8000`.
-
-### Ejecución Local (Opcional)
-```bash
-uv sync
-uv run main.py
-```
 
 ---
 
@@ -126,3 +125,27 @@ uv run main.py
 
 5.  **Pydantic AI**:
     -   Se eligió sobre LangChain por su simplicidad, tipado fuerte y enfoque "Pythonic".
+
+---
+
+## Próximos Pasos (Roadmap)
+
+Para evolucionar este MVP hacia un producto de producción robusto, se consideran las siguientes mejoras:
+
+1.  **RAG (Retrieval-Augmented Generation)**:
+    -   Implementar una base de conocimientos vectorial para que el agente pueda responder preguntas sobre políticas de devolución, envíos y detalles técnicos de productos sin depender únicamente del prompt del sistema.
+
+2.  **Evaluación Continua (Pydantic Evals)**:
+    -   Integrar un pipeline de evaluación automática para medir la precisión y calidad de las respuestas del agente ante cambios en el código o en los prompts.
+
+3.  **Optimización Automática de Prompts (GEPA)**:
+    -   Implementar *Generative Evolutionary Prompt Optimization* para refinar dinámicamente las instrucciones del sistema basándose en métricas de éxito reales, mejorando la conversión de ventas y la satisfacción del cliente de forma autónoma.
+
+---
+
+## Documentación para profundizar
+
+Para profundizar en los conceptos de Agentes y Optimización aplicados en este proyecto:
+
+-   [Building an Agentic Application (Pydantic AI)](https://pydantic.dev/articles/building-agentic-application)
+-   [Prompt Optimization with GEPA](https://pydantic.dev/articles/prompt-optimization-with-gepa)
